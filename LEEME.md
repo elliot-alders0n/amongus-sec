@@ -1,12 +1,15 @@
 # Amongus edición Ciberseguridad
 
 ## Consideraciones previas
+
+### SSH
 Todos los dispositivos que vayan a participar en el juego deben tener el servicio ssh activado.
 
 ```
 sudo systemctl start ssh
 ```
 
+### Cortafuegos
 Es preferible que el cortafuegos esté desactivado o configurado correctamente para que permita la conexión ssh ; o bien ejecutamos:
 
 ```
@@ -18,6 +21,14 @@ o
 ```
 sudo ufw disable
 ```
+
+### Reenvio de ventanas
+Asegurarse de que en el archivo /etc/ssh/sshd_conf hay una línea que pone
+```
+X11Forwarding yes
+```
+(sin # al principio; si pone no cambiarlo a yes).
+
 ### Fichero de configuración
 En el fichero 
 conf/amongus-sec.conf 
