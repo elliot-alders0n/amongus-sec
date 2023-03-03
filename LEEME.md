@@ -9,8 +9,11 @@ sudo systemctl start ssh
 Es preferible que el cortafuegos esté desactivado o configurado correctamente para que permita la conexión ssh.
 
 ### Fichero de configuración
-En la ruta conf/amongus-sec.conf se deben introducir todas las IPs de los dispositivos que van a intervenir con sus respectivos nombres identificativos:
-<IP>[Tabulador]<Nombre>
+En el fichero 
+conf/amongus-sec.conf 
+se deben introducir todas las IPs de los dispositivos que van a intervenir con sus respectivos nombres identificativos en líneas independientes siguiendo este formato:
+
+IP[Tabulador]Nombre
 
 Si se desea comentar una línea, escribir # como primer caracter de línea.
 
