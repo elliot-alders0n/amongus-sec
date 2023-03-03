@@ -11,12 +11,14 @@ class AmonguSec:
 			lines = f.readlines()
 			self.candidatos = []
 			for line in lines:
-				ip,nombre = line.rstrip().split('\t')
+				line = line.rstrip()
+				if line[0] != '#':
+					ip,nombre = line.rstrip().split('\t')
 
-				if ip != self.mi_ip:
-					self.candidatos.append([ip,nombre])
-				else:
-					self.mi_nombre = nombre
+					if ip != self.mi_ip:
+						self.candidatos.append([ip,nombre])
+					else:
+						self.mi_nombre = nombre
 
 	def __init__(self):
 		# 0 - curios@	: realiza conexion ssh y sale inmediatamente
@@ -47,7 +49,7 @@ class AmonguSec:
 		if self.tarea == "curios@":
 			self.comando = f"ssh -i claves/{self.mi_nombre} kali@{self.objetivo} 'echo \"\"'"
 		elif self.tarea == "tortuga":
-			self.comando = f"ssh -i claves/{self.mi_nombre} kali@{self.objetivo} 'nc -lnvp 1234'"
+			self.comando = f"ssh -i claves/{self.mi_nombre} kali@{self.objetivo} 'nc -lnvp {random.randint(20,65536)}'"
 		elif self.tarea == "impostor/a":
 			disfraz = random.choice(self.DISFRACES)
 			print(f"disfraz : \033[35m{disfraz}\033[0m")
@@ -82,6 +84,26 @@ class AmonguSec:
 	def ejecutar_comando(self):
 		os.system(self.comando)
 
+	def buscar_candidato(self,nombre):
+		for candidato in self.candidatos:
+			if candidato[1].lower() == nombre.lower():
+				return candidato[0]
+		return ""
+
+	def IP_es_valida(self,IP):
+		valida = True
+		partes = IP.split(".")
+		if len(partes) == 4:
+			for parte in partes:
+				if parte.isdigit():
+					valor = int(parte)
+					if not (valor >= 0 and valor <=255):
+						return False
+				else:
+					valida = False
+		else:
+			valida = False
+		return valida
 
 def main():
 	amongusec = AmonguSec()
@@ -103,17 +125,28 @@ def main():
 				if opcion == 'x':
 					exit()
 
-				opciones = ['a','b','c']
+				opciones = ['a','b','c','d']
 				opcion_correcta = (opcion in opciones)
 				if not opcion_correcta:
 					print("\033[1m\033[38;2;255;0;0mOpción incorrecta.\033[0m")
 					time.sleep(1)
-
 			amongusec.escoger_tarea(indice=opciones.index(opcion))
 
 
-			print("Seleccione la IP objetivo : ")
-			IP_objetivo = input()
+			nombreIP_correcto = False
+			IP_objetivo = ""
+			while not nombreIP_correcto:
+				print("Seleccione la IP/nombre del objetivo : ")
+				IP_objetivo = input()
+
+				if not amongusec.IP_es_valida(IP_objetivo):
+					IP_objetivo = amongusec.buscar_candidato(IP_objetivo)
+				nombreIP_correcto = (len(IP_objetivo) > 0)
+
+				if not nombreIP_correcto:
+					print("\033[1m\033[38;2;255;0;0mNombre/IP incorrecto.\033[0m")
+					time.sleep(1)
+
 			nombre_objetivo = amongusec.obtener_nombre(IP_objetivo)
 			amongusec.establecer_objetivo(IP_objetivo)
 
@@ -124,7 +157,7 @@ def main():
 			amongusec.establecer_comando()
 			print()
 			print(amongusec.comando)
-			amongusec.ejecutar_comando()
+			#amongusec.ejecutar_comando()
 		else:
 			error = True
 	elif len(sys.argv) == 1:
@@ -136,7 +169,7 @@ def main():
 		amongusec.establecer_comando()
 		print()
 		print(amongusec.comando)
-		amongusec.ejecutar_comando()
+		#amongusec.ejecutar_comando()
 	else:
 		error = True
 
