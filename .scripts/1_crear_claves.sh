@@ -1,2 +1,2 @@
 #!/bin/sh
-python src/1-crear-claves.py
+python .src/1-crear-claves.py
