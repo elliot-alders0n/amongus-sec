@@ -61,17 +61,17 @@ class AmonguSec:
 	def establecer_comando(self):
 		self.comando = ""
 		if self.tarea == "curios@":
-			self.comando = f"ssh -i claves/{self.mi_nombre} kali@{self.objetivo} 'echo \"\"'"
+			self.comando = f"ssh -i .claves/{self.mi_nombre} kali@{self.objetivo} 'echo \"\"'"
 		elif self.tarea == "tortuga":
-			self.comando = f"ssh -i claves/{self.mi_nombre} kali@{self.objetivo} 'nc -lnvp {random.randint(20,65536)}'"
+			self.comando = f"ssh -i .claves/{self.mi_nombre} kali@{self.objetivo} 'nc -lnvp {random.randint(20,65536)}'"
 		elif self.tarea == "impostor/a":
 			disfraz = random.choice(self.DISFRACES)
 			print(f"disfraz : \033[35m{disfraz}\033[0m")
-			self.comando = f"ssh -i claves/{self.mi_nombre} kali@{self.objetivo} 'cd /tmp;cp /bin/sleep {disfraz};./{disfraz} 3600'"
+			self.comando = f"ssh -i .claves/{self.mi_nombre} kali@{self.objetivo} 'cd /tmp;cp /bin/sleep {disfraz};./{disfraz} 3600'"
 		elif self.tarea == "ladron/a de ventanas":
 			app = random.choice(self.APPS)
 			print(f"aplicacion : \033[35m{app.split(' ')[0]}\033[0m")
-			self.comando = f"ssh -X -i claves/{self.mi_nombre} kali@{self.objetivo} '{app}'"
+			self.comando = f"ssh -X -i .claves/{self.mi_nombre} kali@{self.objetivo} '{app}'"
 
 	def obtener_nombre(self,IP):
 		nombre = ''
