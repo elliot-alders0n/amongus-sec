@@ -6,8 +6,14 @@ Todos los dispositivos que vayan a participar en el juego deben tener el servici
 sudo systemctl start ssh
 ```
 
-Es preferible que el cortafuegos esté desactivado o configurado correctamente para que permita la conexión ssh.
-
+Es preferible que el cortafuegos esté desactivado o configurado correctamente para que permita la conexión ssh ; o bien ejecutamos:
+```
+sudo ufw allow ssh
+```
+o
+```
+sudo ufw disable
+```
 ### Fichero de configuración
 En el fichero 
 conf/amongus-sec.conf 
