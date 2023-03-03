@@ -1,1 +1,1 @@
-python src/2-compartir-claves.py
+python .src/2-compartir-claves.py
