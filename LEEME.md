@@ -43,5 +43,11 @@ Al ejecutar el siguiente comando
 ```
 Se nos permitirá elegir entre un número de ataques y un objetivo de forma manual.
 
+## Tipos de ataques
+- Curios@ : accede a la máquina objetivo mediante ssh y saldrá de ella inmediatamente.
+- Tortuga : (LAN-turtle) se queda escuchando en un puerto aleatorio a la espera de un potencial ataque "Reverse shell",
+- Impostor/a : se ejecuta un proceso "enmascarado" que tiene como nombre un servicio conocido del sistema.
+- Ladrón/a de ventanas : abre una aplicación que requiera entorno gráfico sin que la víctima se percate.
+  
 ## Objetivo del juego
 Descubrir quién/es han entrado en nuestro equipo y qué ataque están realizando.
