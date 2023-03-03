@@ -176,7 +176,7 @@ def main():
 			amongusec.establecer_comando()
 			print()
 			print(amongusec.comando)
-			#amongusec.ejecutar_comando()
+			amongusec.ejecutar_comando()
 		else:
 			error = True
 	elif len(sys.argv) == 1:
@@ -188,7 +188,7 @@ def main():
 		amongusec.establecer_comando()
 		print()
 		print(amongusec.comando)
-		#amongusec.ejecutar_comando()
+		amongusec.ejecutar_comando()
 	else:
 		error = True
 
