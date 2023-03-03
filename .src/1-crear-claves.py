@@ -15,5 +15,5 @@ with open('conf/amongus-sec.conf') as f:
 		else:
 			mi_nombre = nombre
 
-os.system("mkdir claves")
+os.system("mkdir .claves")
 os.system(f'ssh-keygen -b 2048 -t rsa -f .claves/{mi_nombre} -q -N ""')
