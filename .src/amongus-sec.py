@@ -39,7 +39,7 @@ class AmonguSec:
 
 		self.DISFRACES = ["systemd","dockerd","ssh","sshd","cron","sleep"]
 
-		self.APPS = ["firefox-esr https://www.youtube.com/watch?v=dQw4w9WgXcQ","xfce4-taskmanager","wireshark"]
+		self.APPS = ["firefox","xfce4-taskmanager","wireshark"]
 
 		self.mi_ip = subprocess.getstatusoutput("hostname -I | awk '{print $1}'")[1]
 		self.cargar_fichero_configuracion()
