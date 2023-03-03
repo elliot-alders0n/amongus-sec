@@ -1,3 +1,12 @@
+__author__ = "JmOptimus"
+__copyright__ = "Copyright 2023, JmOptimus"
+
+__license__ = "GPLv3"
+__version__ = "0.0.1"
+__maintainer__ = "JmOptimus"
+__email__ = "jmoptimusdev@gmail.com"
+__status__ = "Beta"
+
 import sys
 import os
 import random
@@ -21,12 +30,17 @@ class AmonguSec:
 						self.mi_nombre = nombre
 
 	def __init__(self):
-		# 0 - curios@	: realiza conexion ssh y sale inmediatamente
-		# 1 - tortuga	: se conecta ssh y ejecuta comando netcat de escucha para abrir una shell remota
-		# 2 - impostor	: proceso enmascarado como un proceso del sistema
-		self.TAREAS = ["curios@","tortuga","impostor/a"]
+		# Curios@ : accede a la máquina objetivo mediante ssh y saldrá de ella inmediatamente.
+		# Tortuga : (LAN-turtle) se queda escuchando en un puerto aleatorio a la espera de un potencial ataque "Reverse shell".
+		# Impostor/a : se ejecuta un proceso "enmascarado" que tiene como nombre un servicio conocido del sistema.
+		# Ladrón/a de ventanas : abre una aplicación que requiera entorno gráfico sin que la víctima se percate.
+
+		self.TAREAS = ["curios@","tortuga","impostor/a","ladron/a de ventanas"]
 
 		self.DISFRACES = ["systemd","dockerd","ssh","sshd","cron","sleep"]
+
+		self.APPS = ["firefox-esr https://www.youtube.com/watch?v=dQw4w9WgXcQ","xfce4-taskmanager","wireshark"]
+
 		self.mi_ip = subprocess.getstatusoutput("hostname -I | awk '{print $1}'")[1]
 		self.cargar_fichero_configuracion()
 
@@ -54,6 +68,10 @@ class AmonguSec:
 			disfraz = random.choice(self.DISFRACES)
 			print(f"disfraz : \033[35m{disfraz}\033[0m")
 			self.comando = f"ssh -i claves/{self.mi_nombre} kali@{self.objetivo} 'cd /tmp;cp /bin/sleep {disfraz};./{disfraz} 3600'"
+		elif self.tarea == "ladron/a de ventanas":
+			app = random.choice(self.APPS)
+			print(f"aplicacion : \033[35m{app.split(' ')[0]}\033[0m")
+			self.comando = f"ssh -X -i claves/{self.mi_nombre} kali@{self.objetivo} '{app}'"
 
 	def obtener_nombre(self,IP):
 		nombre = ''
@@ -115,11 +133,12 @@ def main():
 			opcion_correcta = False
 			opcion = ''
 			while not opcion_correcta:
-				print("\nSeleccione el tipo de ataque : ")
+				print("\nSelecciona el tipo de ataque : ")
 				print("\n\t\033[1m\033[38;2;255;0;0mx\033[0m: Salir\n")
-				print("\t\033[1m\033[38;2;255;255;0ma.\033[0m \033[1mcurios@\033[0m\t:\tentrar y salir de la máquina objetivo.")
-				print("\t\033[1m\033[38;2;255;255;0mb.\033[0m \033[1mtortuga\033[0m\t:\tintento de apertura de shell remota.")
-				print("\t\033[1m\033[38;2;255;255;0mc.\033[0m \033[1mimpostor/a\033[0m\t:\tproceso enmascarado.")
+				print("\t\033[1m\033[38;2;255;255;0ma.\033[0m \033[1mCurios@\033[0m\t\n\t\t\033[38;2;153;153;155m[accede a la máquina objetivo mediante ssh y saldrá de ella inmediatamente].\033[0m\n")
+				print("\t\033[1m\033[38;2;255;255;0mb.\033[0m \033[1mTortuga\033[0m\t\n\t\t\033[38;2;153;153;155m[(LAN-turtle) se queda escuchando en un puerto aleatorio a la espera de un potencial ataque 'Reverse shell'].\033[0m\n")
+				print("\t\033[1m\033[38;2;255;255;0mc.\033[0m \033[1mImpostor/a\033[0m\t\n\t\t\033[38;2;153;153;155m[se ejecuta un proceso 'enmascarado' que tiene como nombre un servicio conocido del sistema].\033[0m\n")
+				print("\t\033[1m\033[38;2;255;255;0md.\033[0m \033[1mLadron/a de ventanas\033[0m\t\n\t\t\033[38;2;153;153;155m[abre una aplicación que requiera entorno gráfico sin que la víctima se percate].\033[0m\n")
 				opcion = input()
 
 				if opcion == 'x':
