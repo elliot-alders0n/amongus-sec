@@ -2,15 +2,19 @@
 
 ## Consideraciones previas
 Todos los dispositivos que vayan a participar en el juego deben tener el servicio ssh activado.
+
 ```
 sudo systemctl start ssh
 ```
 
 Es preferible que el cortafuegos esté desactivado o configurado correctamente para que permita la conexión ssh ; o bien ejecutamos:
+
 ```
 sudo ufw allow ssh
 ```
+
 o
+
 ```
 sudo ufw disable
 ```
@@ -25,12 +29,20 @@ Si se desea comentar una línea, escribir # como primer caracter de línea.
 
 ### Creación de claves
 Para el correcto funcionamiento del juego se generará un par de claves y seguidamente se compartirá la clave pública con el resto de participantes para ingresar en su lista de usuarios autorizados:
+
+Dar permisos de ejecucion al script de instalación:
+```
+sudo chmod +x instalar
+```
+Ejecutar:
+
 ```
 ./instalar
 ```
 ## Modos de juego
 ### Modo automático
 Al ejecutar el siguiente comando
+
 ```
 ./amongus-sec
 ```
@@ -38,6 +50,7 @@ se asignará un ataque y un objetivo aleatorios, informándo por consola para po
 
 ### Modo manual
 Al ejecutar el siguiente comando
+
 ```
 ./amongus-sec-manual
 ```
