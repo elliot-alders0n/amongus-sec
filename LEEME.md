@@ -35,7 +35,7 @@ Al ejecutar el siguiente comando
 ```
 ./amongus-sec-manual
 ```
-Se nos permitirá elegir entre un número de ataques y elegir un objetivo manualmente.
+Se nos permitirá elegir entre un número de ataques y un objetivo de forma manual.
 
 ## Objetivo del juego
 Descubrir quién/es han entrado en nuestro equipo y qué ataque están realizando.
