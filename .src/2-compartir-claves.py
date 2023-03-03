@@ -16,5 +16,5 @@ with open('conf/amongus-sec.conf') as f:
 			mi_nombre = nombre
 
 for dato in datos:
-	comando = f"ssh-copy-id -i claves/{mi_nombre}.pub kali@{dato[0]}"
+	comando = f"ssh-copy-id -i .claves/{mi_nombre}.pub kali@{dato[0]}"
 	os.system(comando)
