@@ -18,7 +18,7 @@ IP[Tabulador]Nombre
 Si se desea comentar una línea, escribir # como primer caracter de línea.
 
 ### Creación de claves
-Para el correcto funcionamiento del juego se generará un par de claves y seguidamente compartir la clave pública con el resto de participantes para ingresar en su lista de usuarios autorizados:
+Para el correcto funcionamiento del juego se generará un par de claves y seguidamente se compartirá la clave pública con el resto de participantes para ingresar en su lista de usuarios autorizados:
 ```
 ./instalar
 ```
