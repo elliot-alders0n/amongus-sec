@@ -1,1 +1,1 @@
-sudo chmod +x amongus-sec amongus-sec-manual scripts/*.*;scripts/1_crear_claves.sh;scripts/2_compartir_claves.sh
+sudo chmod +x amongus-sec amongus-sec-manual .scripts/*.*;.scripts/1_crear_claves.sh;.scripts/2_compartir_claves.sh
